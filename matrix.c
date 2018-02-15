@@ -12,6 +12,15 @@ Returns:
 print the matrix
 */
 void print_matrix(struct matrix *m) {
+  int r = 0, c = 0;
+  while (r < m->rows) {
+    while(c < m->cols) {
+      printf("%d ", m->m[r][c]);
+      c++;
+    }
+    printf("\n");
+    r++;
+  }
 }
 
 /*-------------- void ident() --------------
@@ -21,6 +30,18 @@ Returns:
 turns m in to an identity matrix
 */
 void ident(struct matrix *m) {
+  int r = 0, c = 0;
+  while (r < m->rows) {
+    while(c < m->cols) {
+      if (r == c) {
+	m->m[r][c] = 1;
+      }  else {
+	m->[r][c] = 0;
+      }
+      c++;
+    }
+    r++;
+  }
 }
 
 
@@ -32,6 +53,16 @@ Returns:
 a*b -> b
 */
 void matrix_mult(struct matrix *a, struct matrix *b) {
+  int r = 0;
+  while (r < a->rows) {
+    int count = 0, temp = 0;
+    while (count < 4) {
+      temp += (a->[r][count] * b->[0][count]);
+      count++;
+    }
+    b->[0][r] = temp;
+    r++;
+  }
 }
 
 
